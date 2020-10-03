@@ -32,12 +32,19 @@ export default function CocktailAPI({search}) {
                 if(result.drinks.length)
                     setdrinks(result.drinks)
                 else
-                    setdrinks('')
+                    setdrinks([{
+                        "strDrink": "No Cocktails Found",
+                        "strDrinkThumb": "https://image.freepik.com/free-vector/hand-drawn-cocktail-collection_52683-41288.jpg",
+                        "idDrink": "15300"
+                        }])
             }).catch((error) => {
-                setdrinks({ })
+                setdrinks([{
+                    "strDrink": "No Cocktails Found",
+                    "strDrinkThumb": "https://image.freepik.com/free-vector/hand-drawn-cocktail-collection_52683-41288.jpg",
+                    "idDrink": "15300"
+                }])
             });
     }, [query])
-    
     
     //Return the list of Cocktails
     return (
@@ -52,12 +59,7 @@ export default function CocktailAPI({search}) {
                             <Card.Title>{info.strDrink}</Card.Title>
                         </Card.Body>
                     </Card>
-                    ):<Card key="00000" border="dark" className="text-center">
-                        <Card.Img variant="top" src={"https://image.freepik.com/free-vector/hand-drawn-cocktail-collection_52683-41288.jpg"}/>
-                        <Card.Body>
-                            <Card.Title>No Cocktails Found</Card.Title>
-                        </Card.Body>
-                    </Card>
+                    ):null
                 }
                 </CardColumns>
             </Container>
